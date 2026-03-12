@@ -6,12 +6,13 @@
 <title>For My Beautiful Girl</title>
 
 <style>
+/* ================= BODY ================= */
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
   background:
-  linear-gradient(rgba(0,0,0,0.6), rgba(255,47,146,0.6)),
-  url("background.png");
+    linear-gradient(rgba(0,0,0,0.6), rgba(255,47,146,0.6)),
+    url("background.png");
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
@@ -20,10 +21,9 @@ body{
   overflow-x:hidden;
 }
 
-/* OPENING SCREEN */
+/* ================= OPENING SCREEN ================= */
 #openingScreen{
-  position:fixed;
-  top:0; left:0;
+  position:fixed; top:0; left:0;
   width:100%; height:100%;
   background:#000;
   display:flex;
@@ -43,17 +43,16 @@ body{
   font-size:20px;
   margin-top:10px;
 }
-@keyframes blink{
-  0%,100%{opacity:1;}50%{opacity:0;}
-}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 
+/* ================= NAVIGATION ================= */
 nav{
   background:#000;
   padding:15px;
   position:sticky;
   top:0;
+  z-index:100;
 }
-
 nav a{
   color:#ff9bd2;
   margin:0 15px;
@@ -62,16 +61,16 @@ nav a{
   cursor:pointer;
   font-size:18px;
 }
-
 nav a:hover{ color:white; }
 
+/* ================= SECTIONS ================= */
 .section{ display:none; padding:80px 20px; min-height:80vh; }
 .active{ display:block; }
 
 h1{ font-size:48px; }
 p{ font-size:18px; }
 .heart{ font-size:70px; animation:beat 1s infinite; }
-@keyframes beat{ 0%{transform:scale(1);}50%{transform:scale(1.25);}100%{transform:scale(1);} }
+@keyframes beat{0%{transform:scale(1);}50%{transform:scale(1.25);}100%{transform:scale(1);} }
 
 button{
   background:#ff2f92; border:none; padding:15px 30px; color:white;
@@ -82,41 +81,53 @@ button:hover{ background:#ff0a78; }
 .gallery img{
   width:230px; margin:12px; border-radius:15px;
   box-shadow:0 0 15px rgba(255,0,120,0.5);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+.gallery img:hover{
+  transform: scale(1.05);
+  box-shadow:0 0 25px rgba(255,0,120,0.8);
 }
 
 footer{ padding:25px; background:black; color:#ff9bd2; }
+.story{ max-width:700px; margin:auto; line-height:1.7; opacity:0; transform:translateY(20px); transition: all 0.8s ease; }
 
-.story{ max-width:700px; margin:auto; line-height:1.7; }
-
-/* HEART RAIN */
+/* ================= HEART RAIN & CONFETTI ================= */
 .heartRain{ position:fixed; top:-10px; font-size:20px; animation:fall linear forwards;}
 @keyframes fall{ to{transform:translateY(110vh);} }
 
-/* LETTER */
+.confetti{ position:fixed; top:0; width:10px; height:10px; background:#ff2f92; opacity:0.7; transform:rotate(0deg); animation:confettiFall linear forwards; }
+@keyframes confettiFall{ 100%{transform:translateY(110vh) rotate(360deg);} }
+
+/* ================= LETTER ================= */
 .letter{
   max-width:600px; margin:auto; background:rgba(255,255,255,0.1);
   padding:30px; border-radius:15px; backdrop-filter:blur(6px);
 }
 
-/* LOVE METER */
+/* ================= LOVE METER ================= */
 .meter{ width:300px; height:25px; background:#333; margin:20px auto; border-radius:20px; overflow:hidden; }
 .meter-fill{ height:100%; width:0%; background:#ff2f92; transition:2s; }
 .bigLove{ font-size:40px; margin-top:20px; }
+
+/* ================= TYPING CURSOR ================= */
+#typingTitle{ border-right:3px solid #ff9bd2; display:inline-block; white-space:nowrap; overflow:hidden; }
 
 </style>
 </head>
 <body>
 
-<!-- OPENING SCREEN -->
+<!-- ================= OPENING SCREEN ================= -->
 <div id="openingScreen">
   <h1>For Rani ❤</h1>
   <p>Click anywhere to enter</p>
 </div>
 
+<!-- ================= AUDIO ================= -->
 <audio id="bgMusic" loop>
-<source src="music.mp3" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<!-- ================= NAVIGATION ================= -->
 <nav>
 <a onclick="showSection('home')">Home</a>
 <a onclick="showSection('message')">Message</a>
@@ -126,17 +137,18 @@ footer{ padding:25px; background:black; color:#ff9bd2; }
 <a onclick="showSection('surprise')">Final Surprise</a>
 </nav>
 
+<!-- ================= HOME ================= -->
 <div id="home" class="section">
-<h1 id="typingTitle"></h1>
-<div class="heart">❤</div>
-<p>You are the best thing that ever happened in my life.</p>
-<p id="countdown"></p>
+  <h1 id="typingTitle"></h1>
+  <div class="heart">❤</div>
+  <p>You are the best thing that ever happened in my life.</p>
+  <p id="countdown"></p>
 </div>
 
+<!-- ================= MESSAGE ================= -->
 <div id="message" class="section">
-<h1>For You</h1>
-
-<p class="story">
+  <h1>For You</h1>
+  <p class="story">
 Happy Birthday to the most beautiful girl in my life.
 
 Hari ini, 20 Maret 2026, jadi hari yang paling spesial karena di hari ini lahir seseorang yang sangat berarti buat aku.
@@ -182,11 +194,10 @@ Thank you for coming into my world and filling it with happiness, laughter, and 
 
 </div>
 
+<!-- ================= STORY ================= -->
 <div id="story" class="section">
-<h1>Our Love Story</h1>
-
-<p class="story">
-The day I met you was the day my life changed.
+  <h1>Our Love Story</h1>
+  <p class="story">The day I met you was the day my life changed.
 
 At first, we were just two strangers who met on Roblox,
 but slowly, you became someone very special to me.
@@ -196,15 +207,13 @@ Your smile brightens my darkest days.
 Your voice is my favorite sound.
 
 And today, I just want you to know,
-meeting you is the best gift life has ever given me.
-</p>
-
+meeting you is the best gift life has ever given me.</p>
 </div>
 
+<!-- ================= GALLERY ================= -->
 <div id="gallery" class="section">
-<h1>Our Memories</h1>
-
-<div class="gallery">
+  <h1>Our Memories</h1>
+  <div class="gallery">
 <img src="Image1.jpeg">
 <img src="Image2.jpeg">
 <img src="Image3.jpeg">
@@ -225,58 +234,28 @@ meeting you is the best gift life has ever given me.
 <img src="Image18.png">
 <img src="Image9.png">
 <img src="Image10.png">
-
-<br>
-
-<video width="320" controls>
-<source src="video.mp4" type="video/mp4">
-</video>
-
+  </div>
+  <video width="320" controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
 </div>
 
-<p>Our Firts Meet.</p>
-
-</div>
-
+<!-- ================= LETTER ================= -->
 <div id="letter" class="section">
-<h1>Open My Love Letter</h1>
-
-<button onclick="openLetter()">Open Letter ❤</button>
-
-<div class="letter" id="letterText" style="display:none; margin-top:30px;">
-
-<p>
-Hi bubb,
-
-On this special day I just want to remind you how important you are to me.
-
-You are my happiness, my comfort, and my favorite person in the world.
-No matter what happens in life, I promise I will always care for you and stand by your side.
-
-Thank you for being part of my life.
-
-Happy Birthday, my love.
-
-❤
-</p>
-
+  <h1>Open My Love Letter</h1>
+  <button onclick="openLetter()">Open Letter ❤</button>
+  <div class="letter" id="letterText" style="display:none; margin-top:30px;">
+    <p>Hi bubb, On this special day I just want to remind you how important you are to me...</p>
+  </div>
 </div>
 
-</div>
-
+<!-- ================= SURPRISE ================= -->
 <div id="surprise" class="section">
-<h1>One Last Thing</h1>
-
-<p>Click the button to see how much I love you</p>
-
-<button onclick="showMeter()">Reveal ❤</button>
-
-<div class="meter">
-<div class="meter-fill" id="loveFill"></div>
-</div>
-
-<div class="bigLove" id="loveResult"></div>
-
+  <h1>One Last Thing</h1>
+  <p>Click the button to see how much I love you</p>
+  <button onclick="showMeter()">Reveal ❤</button>
+  <div class="meter"><div class="meter-fill" id="loveFill"></div></div>
+  <div class="bigLove" id="loveResult"></div>
 </div>
 
 <footer>
@@ -284,7 +263,7 @@ Made with ❤ just for you
 </footer>
 
 <script>
-// OPENING SCREEN
+// ================= OPENING SCREEN + TYPING =================
 const openingScreen = document.getElementById('openingScreen');
 const typingTitle = document.getElementById('typingTitle');
 const titleText = "Happy Birthday Rani Nisabilla 🎂❤️";
@@ -293,13 +272,13 @@ openingScreen.addEventListener('click', () => {
   openingScreen.style.display = 'none';
   document.getElementById('home').classList.add('active');
 
-  // Play music
+  // Music
   const music = document.getElementById('bgMusic');
   music.volume = 0.15;
   music.play();
 
-  // Typing animation for title
-  let i = 0;
+  // Typing Animation
+  let i=0;
   function typeWriter(){
     if(i < titleText.length){
       typingTitle.innerHTML += titleText.charAt(i);
@@ -310,24 +289,47 @@ openingScreen.addEventListener('click', () => {
   typeWriter();
 });
 
-// FUNCTION TO SWITCH SECTIONS
+// ================= SHOW SECTIONS =================
 function showSection(sectionId){
   const sections=document.querySelectorAll('.section');
   sections.forEach(sec=>sec.classList.remove('active'));
   document.getElementById(sectionId).classList.add('active');
+
+  // Trigger fade in for paragraphs
+  const stories = document.querySelectorAll('#'+sectionId+' .story');
+  stories.forEach((el, idx)=>{
+    el.style.opacity=0;
+    el.style.transform='translateY(20px)';
+    setTimeout(()=>{
+      el.style.opacity=1;
+      el.style.transform='translateY(0)';
+    }, idx*300);
+  });
 }
 
-/* letter */
+// ================= LETTER =================
 function openLetter(){ document.getElementById("letterText").style.display="block"; }
 
-/* love meter */
+// ================= LOVE METER =================
 function showMeter(){
   const fill=document.getElementById("loveFill");
   fill.style.width="100%";
-  setTimeout(()=>{ document.getElementById("loveResult").innerText="1000000% LOVE FOR YOU ❤"; },2000);
+  // Confetti
+  for(let i=0;i<50;i++){
+    const conf = document.createElement('div');
+    conf.classList.add('confetti');
+    conf.style.left=Math.random()*100+'vw';
+    conf.style.background=['#ff9bd2','#ff2f92','#ff69b4'][Math.floor(Math.random()*3)];
+    conf.style.width=5+Math.random()*5+'px';
+    conf.style.height=5+Math.random()*5+'px';
+    conf.style.animationDuration=2+Math.random()*2+'s';
+    document.body.appendChild(conf);
+    setTimeout(()=>{ conf.remove(); },4000);
+  }
+  setTimeout(()=>{ document.getElementById("loveResult").innerText="1000000000% LOVE FOR YOU ❤"; },2000);
 }
 
-/* heart rain */
+// ================= HEART RAIN =================
 setInterval(()=>{
   const heart=document.createElement("div");
   heart.classList.add("heartRain");
@@ -338,7 +340,7 @@ setInterval(()=>{
   setTimeout(()=>{ heart.remove(); },5000);
 },300);
 
-/* countdown */
+// ================= COUNTDOWN =================
 const birthday = new Date("March 20, 2026 00:00:00").getTime();
 setInterval(()=>{
   const now = new Date().getTime();
@@ -352,30 +354,22 @@ setInterval(()=>{
   }
 },1000);
 
-/* play music after first click + lower volume */
+// ================= MUSIC =================
 document.addEventListener("click", function () {
   const music = document.getElementById("bgMusic");
-  if(music){ music.volume = 0.15; music.play(); }
-}, { once: true });
+  if(music){ music.volume=0.15; music.play(); }
+}, {once:true});
+
+// ================= EASTER EGG =================
+let heartClicks = 0;
+document.querySelector('.heart').addEventListener('click',()=>{
+  heartClicks++;
+  if(heartClicks==10){
+    alert("Secret Message: I love you more than anything, Rani ❤");
+  }
+});
 
 </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
