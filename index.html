@@ -9,21 +9,44 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-
-  /* PHOTO + GRADIENT BACKGROUND */
   background:
   linear-gradient(rgba(0,0,0,0.6), rgba(255,47,146,0.6)),
   url("background.png");
-
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
-
   color:white;
   text-align:center;
   overflow-x:hidden;
 }
-  
+
+/* OPENING SCREEN */
+#openingScreen{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:9999;
+  cursor:pointer;
+}
+#openingScreen h1{
+  font-size:48px;
+  color:#ff9bd2;
+  animation:blink 1s infinite;
+}
+#openingScreen p{
+  color:#ff9bd2;
+  font-size:20px;
+  margin-top:10px;
+}
+@keyframes blink{
+  0%,100%{opacity:1;}50%{opacity:0;}
+}
+
 nav{
   background:#000;
   padding:15px;
@@ -40,115 +63,45 @@ nav a{
   font-size:18px;
 }
 
-nav a:hover{
-  color:white;
-}
+nav a:hover{ color:white; }
 
-.section{
-  display:none;
-  padding:80px 20px;
-  min-height:80vh;
-}
+.section{ display:none; padding:80px 20px; min-height:80vh; }
+.active{ display:block; }
 
-.active{
-  display:block;
-}
-
-h1{
-  font-size:48px;
-}
-
-p{
-  font-size:18px;
-}
-
-.heart{
-  font-size:70px;
-  animation:beat 1s infinite;
-}
-
-@keyframes beat{
-  0%{transform:scale(1);} 
-  50%{transform:scale(1.25);} 
-  100%{transform:scale(1);} 
-}
+h1{ font-size:48px; }
+p{ font-size:18px; }
+.heart{ font-size:70px; animation:beat 1s infinite; }
+@keyframes beat{ 0%{transform:scale(1);}50%{transform:scale(1.25);}100%{transform:scale(1);} }
 
 button{
-  background:#ff2f92;
-  border:none;
-  padding:15px 30px;
-  color:white;
-  font-size:18px;
-  border-radius:30px;
-  cursor:pointer;
+  background:#ff2f92; border:none; padding:15px 30px; color:white;
+  font-size:18px; border-radius:30px; cursor:pointer;
 }
-
-button:hover{
-  background:#ff0a78;
-}
+button:hover{ background:#ff0a78; }
 
 .gallery img{
-  width:230px;
-  margin:12px;
-  border-radius:15px;
+  width:230px; margin:12px; border-radius:15px;
   box-shadow:0 0 15px rgba(255,0,120,0.5);
 }
 
-footer{
-  padding:25px;
-  background:black;
-  color:#ff9bd2;
-}
+footer{ padding:25px; background:black; color:#ff9bd2; }
 
-.story{
-  max-width:700px;
-  margin:auto;
-  line-height:1.7;
-}
+.story{ max-width:700px; margin:auto; line-height:1.7; }
 
 /* HEART RAIN */
-.heartRain{
-  position:fixed;
-  top:-10px;
-  font-size:20px;
-  animation:fall linear forwards;
-}
-
-@keyframes fall{
-  to{transform:translateY(110vh);} 
-}
+.heartRain{ position:fixed; top:-10px; font-size:20px; animation:fall linear forwards;}
+@keyframes fall{ to{transform:translateY(110vh);} }
 
 /* LETTER */
 .letter{
-  max-width:600px;
-  margin:auto;
-  background:rgba(255,255,255,0.1);
-  padding:30px;
-  border-radius:15px;
-  backdrop-filter:blur(6px);
+  max-width:600px; margin:auto; background:rgba(255,255,255,0.1);
+  padding:30px; border-radius:15px; backdrop-filter:blur(6px);
 }
 
 /* LOVE METER */
-.meter{
-  width:300px;
-  height:25px;
-  background:#333;
-  margin:20px auto;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.meter-fill{
-  height:100%;
-  width:0%;
-  background:#ff2f92;
-  transition:2s;
-}
-
-.bigLove{
-  font-size:40px;
-  margin-top:20px;
-}
+.meter{ width:300px; height:25px; background:#333; margin:20px auto; border-radius:20px; overflow:hidden; }
+.meter-fill{ height:100%; width:0%; background:#ff2f92; transition:2s; }
+.bigLove{ font-size:40px; margin-top:20px; }
 
 </style>
 </head>
@@ -173,8 +126,8 @@ footer{
 <a onclick="showSection('surprise')">Final Surprise</a>
 </nav>
 
-<div id="home" class="section active">
-<h1>Happy Birthday Rani Nisabilla🎂❤️</h1>
+<div id="home" class="section">
+<h1 id="typingTitle"></h1>
 <div class="heart">❤</div>
 <p>You are the best thing that ever happened in my life.</p>
 <p id="countdown"></p>
@@ -331,7 +284,33 @@ Made with ❤ just for you
 </footer>
 
 <script>
+// OPENING SCREEN
+const openingScreen = document.getElementById('openingScreen');
+const typingTitle = document.getElementById('typingTitle');
+const titleText = "Happy Birthday Rani Nisabilla 🎂❤️";
 
+openingScreen.addEventListener('click', () => {
+  openingScreen.style.display = 'none';
+  document.getElementById('home').classList.add('active');
+
+  // Play music
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.15;
+  music.play();
+
+  // Typing animation for title
+  let i = 0;
+  function typeWriter(){
+    if(i < titleText.length){
+      typingTitle.innerHTML += titleText.charAt(i);
+      i++;
+      setTimeout(typeWriter,100);
+    }
+  }
+  typeWriter();
+});
+
+// FUNCTION TO SWITCH SECTIONS
 function showSection(sectionId){
   const sections=document.querySelectorAll('.section');
   sections.forEach(sec=>sec.classList.remove('active'));
@@ -339,18 +318,13 @@ function showSection(sectionId){
 }
 
 /* letter */
-function openLetter(){
-  document.getElementById("letterText").style.display="block";
-}
+function openLetter(){ document.getElementById("letterText").style.display="block"; }
 
 /* love meter */
 function showMeter(){
   const fill=document.getElementById("loveFill");
   fill.style.width="100%";
-
-  setTimeout(()=>{
-    document.getElementById("loveResult").innerText="1000000% LOVE FOR YOU ❤";
-  },2000);
+  setTimeout(()=>{ document.getElementById("loveResult").innerText="1000000% LOVE FOR YOU ❤"; },2000);
 }
 
 /* heart rain */
@@ -361,52 +335,33 @@ setInterval(()=>{
   heart.style.left=Math.random()*100+"vw";
   heart.style.animationDuration=(3+Math.random()*2)+"s";
   document.body.appendChild(heart);
-
-  setTimeout(()=>{
-    heart.remove();
-  },5000);
-
+  setTimeout(()=>{ heart.remove(); },5000);
 },300);
 
 /* countdown */
 const birthday = new Date("March 20, 2026 00:00:00").getTime();
-
 setInterval(()=>{
-
-const now = new Date().getTime();
-const distance = birthday - now;
-
-const days = Math.floor(distance/(1000*60*60*24));
-const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-
-if(distance>0){
- document.getElementById("countdown").innerHTML="Next birthday in: "+364+" days "+23+" hours";
-}else{
- document.getElementById("countdown").innerHTML="Today is your special day ❤";
-}
-
+  const now = new Date().getTime();
+  const distance = birthday - now;
+  const days = Math.floor(distance/(1000*60*60*24));
+  const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  if(distance>0){
+    document.getElementById("countdown").innerHTML="Next birthday in: "+days+" days "+hours+" hours";
+  } else {
+    document.getElementById("countdown").innerHTML="Today is your special day ❤";
+  }
 },1000);
 
 /* play music after first click + lower volume */
 document.addEventListener("click", function () {
   const music = document.getElementById("bgMusic");
-  
-  if(music){
-    music.volume = 0.15;   // volume 15%
-    music.play();
-  }
-
+  if(music){ music.volume = 0.15; music.play(); }
 }, { once: true });
-/* FIX AUTOPLAY MUSIC FOR BROWSER */
-window.addEventListener("click", () => {
-  const music = document.getElementById("bgMusic");
-  music.play();
-});
 
 </script>
-
 </body>
 </html>
+
 
 
 
