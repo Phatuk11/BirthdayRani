@@ -6,53 +6,31 @@
 <title>For My Beautiful Girl</title>
 
 <style>
-/* ================= BODY ================= */
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
+
+  /* PHOTO + GRADIENT BACKGROUND */
   background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(255,47,146,0.6)),
-    url("background.png");
+  linear-gradient(rgba(0,0,0,0.6), rgba(255,47,146,0.6)),
+  url("background.png");
+
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
+
   color:white;
   text-align:center;
   overflow-x:hidden;
 }
-
-/* ================= OPENING SCREEN ================= */
-#openingScreen{
-  position:fixed; top:0; left:0;
-  width:100%; height:100%;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  z-index:9999;
-  cursor:pointer;
-}
-#openingScreen h1{
-  font-size:48px;
-  color:#ff9bd2;
-  animation:blink 1s infinite;
-}
-#openingScreen p{
-  color:#ff9bd2;
-  font-size:20px;
-  margin-top:10px;
-}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-
-/* ================= NAVIGATION ================= */
+  
 nav{
   background:#000;
   padding:15px;
   position:sticky;
   top:0;
-  z-index:100;
 }
+
 nav a{
   color:#ff9bd2;
   margin:0 15px;
@@ -61,73 +39,199 @@ nav a{
   cursor:pointer;
   font-size:18px;
 }
-nav a:hover{ color:white; }
 
-/* ================= SECTIONS ================= */
-.section{ display:none; padding:80px 20px; min-height:80vh; }
-.active{ display:block; }
+nav a:hover{
+  color:white;
+}
 
-h1{ font-size:48px; }
-p{ font-size:18px; }
-.heart{ font-size:70px; animation:beat 1s infinite; }
-@keyframes beat{0%{transform:scale(1);}50%{transform:scale(1.25);}100%{transform:scale(1);} }
+.section{
+  display:none;
+  padding:80px 20px;
+  min-height:80vh;
+}
+
+.active{
+  display:block;
+}
+
+h1{
+  font-size:48px;
+}
+
+p{
+  font-size:18px;
+}
+
+.heart{
+  font-size:70px;
+  animation:beat 1s infinite;
+}
+
+@keyframes beat{
+  0%{transform:scale(1);} 
+  50%{transform:scale(1.25);} 
+  100%{transform:scale(1);} 
+}
 
 button{
-  background:#ff2f92; border:none; padding:15px 30px; color:white;
-  font-size:18px; border-radius:30px; cursor:pointer;
+  background:#ff2f92;
+  border:none;
+  padding:15px 30px;
+  color:white;
+  font-size:18px;
+  border-radius:30px;
+  cursor:pointer;
 }
-button:hover{ background:#ff0a78; }
+
+button:hover{
+  background:#ff0a78;
+}
 
 .gallery img{
-  width:230px; margin:12px; border-radius:15px;
+  width:230px;
+  margin:12px;
+  border-radius:15px;
   box-shadow:0 0 15px rgba(255,0,120,0.5);
-  transition: transform 0.5s, box-shadow 0.5s;
-}
-.gallery img:hover{
-  transform: scale(1.05);
-  box-shadow:0 0 25px rgba(255,0,120,0.8);
 }
 
-footer{ padding:25px; background:black; color:#ff9bd2; }
-.story{ max-width:700px; margin:auto; line-height:1.7; opacity:0; transform:translateY(20px); transition: all 0.8s ease; }
+footer{
+  padding:25px;
+  background:black;
+  color:#ff9bd2;
+}
 
-/* ================= HEART RAIN & CONFETTI ================= */
-.heartRain{ position:fixed; top:-10px; font-size:20px; animation:fall linear forwards;}
-@keyframes fall{ to{transform:translateY(110vh);} }
+.story{
+  max-width:700px;
+  margin:auto;
+  line-height:1.7;
+}
 
-.confetti{ position:fixed; top:0; width:10px; height:10px; background:#ff2f92; opacity:0.7; transform:rotate(0deg); animation:confettiFall linear forwards; }
-@keyframes confettiFall{ 100%{transform:translateY(110vh) rotate(360deg);} }
+/* HEART RAIN */
+.heartRain{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall linear forwards;
+}
 
-/* ================= LETTER ================= */
+@keyframes fall{
+  to{transform:translateY(110vh);} 
+}
+
+/* LETTER */
 .letter{
-  max-width:600px; margin:auto; background:rgba(255,255,255,0.1);
-  padding:30px; border-radius:15px; backdrop-filter:blur(6px);
+  max-width:600px;
+  margin:auto;
+  background:rgba(255,255,255,0.1);
+  padding:30px;
+  border-radius:15px;
+  backdrop-filter:blur(6px);
 }
 
-/* ================= LOVE METER ================= */
-.meter{ width:300px; height:25px; background:#333; margin:20px auto; border-radius:20px; overflow:hidden; }
-.meter-fill{ height:100%; width:0%; background:#ff2f92; transition:2s; }
-.bigLove{ font-size:40px; margin-top:20px; }
+/* LOVE METER */
+.meter{
+  width:300px;
+  height:25px;
+  background:#333;
+  margin:20px auto;
+  border-radius:20px;
+  overflow:hidden;
+}
 
-/* ================= TYPING CURSOR ================= */
-#typingTitle{ border-right:3px solid #ff9bd2; display:inline-block; white-space:nowrap; overflow:hidden; }
+.meter-fill{
+  height:100%;
+  width:0%;
+  background:#ff2f92;
+  transition:2s;
+}
 
+.bigLove{
+  font-size:40px;
+  margin-top:20px;
+}
+
+/* ===== MOBILE OPTIMIZATION ===== */
+@media only screen and (max-width:768px){
+  h1{
+    font-size:32px;
+  }
+  p{
+    font-size:16px;
+  }
+  nav{
+    padding:10px;
+    text-align:center;
+  }
+  nav a{
+    display:block;
+    margin:10px 0;
+    font-size:16px;
+    padding:10px 0;
+  }
+  .gallery img{
+    width:150px;
+    margin:8px;
+  }
+  video{
+    width:90%;
+    height:auto;
+  }
+  .section{
+    padding:60px 15px;
+  }
+  #typingTitle{
+    font-size:28px;
+  }
+}
+
+/* TYPING ANIMATION */
+#typingTitle{
+  display:inline-block;
+  border-right: 3px solid #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size:48px;
+  animation: typing 3s steps(30), blink 0.7s step-end infinite alternate;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* OPENING SCREEN */
+#openingScreen{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  color:#ff9bd2;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font-size:32px;
+  z-index:9999;
+}
 </style>
 </head>
 <body>
 
-<!-- ================= OPENING SCREEN ================= -->
+<!-- OPENING SCREEN -->
 <div id="openingScreen">
-  <h1>For Rani ❤</h1>
-  <p>Click anywhere to enter</p>
+  <div id="typingTitle">For Rani ❤️</div>
 </div>
 
-<!-- ================= AUDIO ================= -->
 <audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ================= NAVIGATION ================= -->
 <nav>
 <a onclick="showSection('home')">Home</a>
 <a onclick="showSection('message')">Message</a>
@@ -137,12 +241,11 @@ footer{ padding:25px; background:black; color:#ff9bd2; }
 <a onclick="showSection('surprise')">Final Surprise</a>
 </nav>
 
-<!-- ================= HOME ================= -->
-<div id="home" class="section">
-  <h1 id="typingTitle"></h1>
-  <div class="heart">❤</div>
-  <p>You are the best thing that ever happened in my life.</p>
-  <p id="countdown"></p>
+<div id="home" class="section active">
+<h1 id="homeTitle">Happy Birthday Rani Nisabilla🎂❤️</h1>
+<div class="heart">❤</div>
+<p>You are the best thing that ever happened in my life.</p>
+<p id="countdown"></p>
 </div>
 
 <!-- ================= MESSAGE ================= -->
@@ -269,84 +372,50 @@ Made with ❤ just for you
 </footer>
 
 <script>
-// ================= OPENING SCREEN + TYPING =================
-const openingScreen = document.getElementById('openingScreen');
-const typingTitle = document.getElementById('typingTitle');
-const titleText = "Happy Birthday Rani Nisabilla 🎂❤️";
-
-openingScreen.addEventListener('click', () => {
-  openingScreen.style.display = 'none';
-  document.getElementById('home').classList.add('active');
-
-  // Music
-  const music = document.getElementById('bgMusic');
-  music.volume = 0.15;
-  music.play();
-
-  // Typing Animation
-  let i=0;
-  function typeWriter(){
-    if(i < titleText.length){
-      typingTitle.innerHTML += titleText.charAt(i);
-      i++;
-      setTimeout(typeWriter,100);
-    }
-  }
-  typeWriter();
+/* OPENING SCREEN */
+window.addEventListener("load", ()=>{
+  const opening = document.getElementById("openingScreen");
+  setTimeout(()=>{
+    opening.style.display="none"; // hilangkan setelah 3 detik
+  },3000);
 });
 
-// ================= SHOW SECTIONS =================
+/* SECTION NAVIGATION */
 function showSection(sectionId){
   const sections=document.querySelectorAll('.section');
   sections.forEach(sec=>sec.classList.remove('active'));
   document.getElementById(sectionId).classList.add('active');
-
-  // Trigger fade in for paragraphs
-  const stories = document.querySelectorAll('#'+sectionId+' .story');
-  stories.forEach((el, idx)=>{
-    el.style.opacity=0;
-    el.style.transform='translateY(20px)';
-    setTimeout(()=>{
-      el.style.opacity=1;
-      el.style.transform='translateY(0)';
-    }, idx*300);
-  });
 }
 
-// ================= LETTER =================
-function openLetter(){ document.getElementById("letterText").style.display="block"; }
+/* LETTER */
+function openLetter(){
+  document.getElementById("letterText").style.display="block";
+}
 
-// ================= LOVE METER =================
+/* LOVE METER */
 function showMeter(){
   const fill=document.getElementById("loveFill");
   fill.style.width="100%";
-  // Confetti
-  for(let i=0;i<50;i++){
-    const conf = document.createElement('div');
-    conf.classList.add('confetti');
-    conf.style.left=Math.random()*100+'vw';
-    conf.style.background=['#ff9bd2','#ff2f92','#ff69b4'][Math.floor(Math.random()*3)];
-    conf.style.width=5+Math.random()*5+'px';
-    conf.style.height=5+Math.random()*5+'px';
-    conf.style.animationDuration=2+Math.random()*2+'s';
-    document.body.appendChild(conf);
-    setTimeout(()=>{ conf.remove(); },4000);
-  }
-  setTimeout(()=>{ document.getElementById("loveResult").innerText="1000000000% LOVE FOR YOU ❤"; },2000);
+  setTimeout(()=>{
+    document.getElementById("loveResult").innerText="1000000% LOVE FOR YOU ❤";
+  },2000);
 }
 
-// ================= HEART RAIN =================
-setInterval(()=>{
-  const heart=document.createElement("div");
-  heart.classList.add("heartRain");
-  heart.innerText="❤";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(3+Math.random()*2)+"s";
-  document.body.appendChild(heart);
-  setTimeout(()=>{ heart.remove(); },5000);
-},300);
+/* HEART RAIN */
+const isMobile = window.innerWidth <= 768;
+if(!isMobile){
+  setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.classList.add("heartRain");
+    heart.innerText="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(3+Math.random()*2)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{ heart.remove(); },5000);
+  },300);
+}
 
-// ================= COUNTDOWN =================
+/* COUNTDOWN */
 const birthday = new Date("March 20, 2026 00:00:00").getTime();
 setInterval(()=>{
   const now = new Date().getTime();
@@ -354,27 +423,25 @@ setInterval(()=>{
   const days = Math.floor(distance/(1000*60*60*24));
   const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
   if(distance>0){
-    document.getElementById("countdown").innerHTML="Next birthday in: "+days+" days "+hours+" hours";
-  } else {
-    document.getElementById("countdown").innerHTML="Today is your special day ❤";
+   document.getElementById("countdown").innerHTML="Next birthday in: "+days+" days "+hours+" hours";
+  }else{
+   document.getElementById("countdown").innerHTML="Today is your special day ❤";
   }
 },1000);
 
-// ================= MUSIC =================
+/* PLAY MUSIC AFTER FIRST CLICK + LOWER VOLUME */
 document.addEventListener("click", function () {
   const music = document.getElementById("bgMusic");
-  if(music){ music.volume=0.15; music.play(); }
-}, {once:true});
-
-// ================= EASTER EGG =================
-let heartClicks = 0;
-document.querySelector('.heart').addEventListener('click',()=>{
-  heartClicks++;
-  if(heartClicks==10){
-    alert("Secret Message: I love you more than anything, Rani ❤");
+  if(music){
+    music.volume = 0.15;   // volume 15%
+    music.play();
   }
-});
+}, { once: true });
 
+window.addEventListener("click", () => {
+  const music = document.getElementById("bgMusic");
+  music.play();
+});
 </script>
 
 </body>
