@@ -253,10 +253,9 @@ meeting you is the best gift life has ever given me.
 <img src="Image5.jpeg">
 <img src="Image6.jpeg">
 <img src="Image7.jpeg">
-<img src="Image8.png">
-<img src="Image9.png">
-<img src="Image10.png">
 <img src="Image11.jpeg">
+<img src="Image19.jpeg">
+<img src="Image20.jpeg">
 <img src="Image12.jpeg">
 <img src="Image13.jpeg">
 <img src="Image14.jpeg">
@@ -264,7 +263,11 @@ meeting you is the best gift life has ever given me.
 <img src="Image16.png">
 <img src="Image17.png">
 <img src="Image18.png">
+<img src="Image19.jpeg">
 <img src="Image20.jpeg">
+<img src="Image8.png">
+<img src="Image9.png">
+<img src="Image10.png">
 
 <br>
 
@@ -380,6 +383,16 @@ if(distance>0){
 
 },1000);
 
+/* play music after first click + lower volume */
+document.addEventListener("click", function () {
+  const music = document.getElementById("bgMusic");
+  
+  if(music){
+    music.volume = 0.2;   // volume 20%
+    music.play();
+  }
+
+}, { once: true });
 /* FIX AUTOPLAY MUSIC FOR BROWSER */
 window.addEventListener("click", () => {
   const music = document.getElementById("bgMusic");
@@ -390,6 +403,7 @@ window.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
